@@ -1,0 +1,79 @@
+/* category_style/category-details-style.css */
+
+body {
+    background-color: #f4f4f4;
+    /* Light background color for the body */
+    font-family: 'Roboto', sans-serif;
+    /* Clean and modern font */
+    margin: 0;
+    padding: 0;
+}
+
+.site-content {
+    background-color: rgba(194, 195, 187, 0.945);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.category-details-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #d8d8d8;
+    /* Light background color for the container */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    text-align: center;
+}
+
+.category-details-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 180px;
+    border-radius: 8px;
+    /* Ensure image is responsive and has rounded corners */
+    margin-bottom: 20px;
+}
+
+.category-details-title {
+    font-size: 2em;
+    color: #333;
+    /* Title color */
+    margin: 20px 0;
+}
+
+.category-details-description {
+    font-size: 1.2em;
+    color: #2c3e50;
+    /* Description color */
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .category-details-container {
+        padding: 15px;
+    }
+
+    .category-details-title {
+        font-size: 1.5em;
+    }
+
+    .category-details-description {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-details-container {
+        padding: 10px;
+    }
+
+    .category-details-title {
+        font-size: 1.2em;
+    }
+
+    .category-details-description {
+        font-size: 0.9em;
+    }
+}

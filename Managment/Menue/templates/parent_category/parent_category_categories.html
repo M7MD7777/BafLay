@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/parent_category_style/parent_category_categories-style.css' %}">
+
+<div class="parent-category-container">
+    <h2 class="parent-category-title">{{ parent_category.name }} Categories</h2>
+
+    <div class="category-items">
+        {% for category in categories %}
+        <div class="category-item animate__zoomIn">
+            <a href="{% url 'category_items' category_id=category.id %}">
+                {% if category.image %}
+                <img src="{{ category.image.url }}" alt="{{ category.name }} Image" class="category-image">
+                {% else %}
+                <p>No Image Available</p>
+                {% endif %}
+            </a>
+            <p class="category-name">{{ category.name }}</p>
+            <p class="category-description">{{ category.description }}</p>
+        </div>
+        {% empty %}
+        <p>No categories available in this parent category.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

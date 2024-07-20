@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/branche_style/branche-categories-style.css' %}">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+<div class="container">
+    <h2 class="branche-title">{{ branche.name }} Categories</h2>
+    <div class="row parent_categories justify-content-center">
+        {% for parent_category in parent_categories %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="parent_category-item animate__animated animate__zoomIn">
+                <a href="{% url 'parent_category_items' parent_category_id=parent_category.id %}">
+                    {% if parent_category.image %}
+                    <img src="{{ parent_category.image.url }}" alt="{{ parent_category.name }} Image"
+                        class="parent_category-image">
+                    {% else %}
+                    <p>No Image Available</p>
+                    {% endif %}
+                </a>
+                <p class="parent_category-name">{{ parent_category.name }}</p>
+                <p class="parent_category-description">{{ parent_category.description }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p class="no-categories">No categories available for this branch.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

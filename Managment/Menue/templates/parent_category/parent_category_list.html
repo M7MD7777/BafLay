@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Parent Categories{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/parent_category_style/parent_category-list-style.css' %}">
+
+<section class="o-parent_category-list-container">
+    <h2>Parent Category List</h2>
+    <ul class="o-parent_category-list">
+        {% for parent_category in parent_categories %}
+        <li class="o-parent_category-item">
+            <a href="{% url 'parent_category_items' parent_category.id %}">
+                {% if parent_category.image %}
+                <img src="{{ parent_category.image.url }}" alt="{{ parent_category.name }} Image"
+                    class="o-parent_category-image">
+                {% else %}
+                <p>No Image Available</p>
+                {% endif %}
+            </a>
+            <div class="parent_category-details">
+                <p><strong class="o-parent_category-detail-label">Name:</strong> {{ parent_category.name }}</p>
+                <p><strong class="o-parent_category-detail-label">
+                        Description:</strong> {{ parent_category.description}}</p>
+            </div>
+            {% if user.is_authenticated %}
+            {% if request.user.profile.role == 'admin' %}
+            <div class="parent_category-actions">
+                <a href="{% url 'parent_category_update' parent_category.pk %}"
+                    class="parent_category-update-button">Update</a>
+                <form method="post" action="{% url 'parent_category_delete' parent_category.pk %}"
+                    class="parent_category-delete-form">
+                    {% csrf_token %}
+                    <button type="button" class="parent_category-delete-button">Delete</button>
+                </form>
+            </div>
+            {% endif %}
+            {% endif %}
+        </li>
+        {% empty %}
+        <p>No parent categories available.</p>
+        {% endfor %}
+    </ul>
+    {% if user.is_authenticated %}
+    {% if request.user.profile.role == 'admin' %}
+    <a href="{% url 'parent_category_create' %}" class="parent_category-create-link">Add Parent Category</a>
+    {% endif %}
+    {% endif %}
+    <div id="deleteModal" class="parent_category-modal">
+        <div class="parent_category-modal-content">
+            <p>Are you sure you want to delete this parent_category?</p>
+            <div class="parent_category-modal-buttons">
+                <button class="parent_category-confirm-btn" id="confirmDelete">Yes, Delete</button>
+                <button class="parent_category-cancel-btn" id="cancelDelete">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () =>
+        {
+            const deleteButtons = document.querySelectorAll('.parent_category-delete-button');
+            const deleteModal = document.getElementById('deleteModal');
+            const confirmDelete = document.getElementById('confirmDelete');
+            const cancelDelete = document.getElementById('cancelDelete');
+            let formToSubmit;
+
+            deleteButtons.forEach(button =>
+            {
+                button.addEventListener('click', (event) =>
+                {
+                    event.preventDefault();
+                    formToSubmit = event.target.closest('form');
+                    deleteModal.style.display = 'flex';
+                });
+            });
+
+            confirmDelete.addEventListener('click', () =>
+            {
+                formToSubmit.submit();
+            });
+
+            cancelDelete.addEventListener('click', () =>
+            {
+                deleteModal.style.display = 'none';
+            });
+        });
+    </script>
+</section>
+{% endblock %}

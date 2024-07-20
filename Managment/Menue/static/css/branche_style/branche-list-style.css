@@ -1,0 +1,233 @@
+/* branche_style/branche-list-style.css */
+
+body {
+    background-color: #f4f4f4;
+    /* Light background color for the body */
+    font-family: 'Roboto', sans-serif;
+    /* Clean and modern font */
+    margin: 0;
+    padding: 0;
+}
+
+.site-content {
+    background-color: rgba(194, 195, 187, 0.945);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.o-branche-list-container {
+    max-width: 700px;
+    margin: 50px auto;
+    background-color: #d8d8d8;
+    /* White background for the container */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    /* Consistent color with other forms */
+    margin-bottom: 20px;
+}
+
+.o-branche-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.o-branche-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    /* Add a light border between items */
+}
+
+.o-branche-item:last-child {
+    border-bottom: none;
+    /* Remove border for the last item */
+}
+
+.o-branche-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.branche-details {
+    flex: 1;
+    margin-bottom: 15px;
+}
+
+.o-branche-detail-label {
+    font-weight: bold;
+    color: #2c3e50;
+    /* Dark color for labels */
+}
+
+.branche-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.branche-update-button,
+.branche-delete-button {
+    display: block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.branche-update-button {
+    background-color: #3498db;
+    /* Update button color */
+}
+
+.branche-update-button:hover {
+    background-color: #2980b9;
+    /* Darker shade on hover */
+}
+
+.branche-delete-button {
+    background-color: #e74c3c;
+    /* Delete button color */
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.branche-delete-button:hover {
+    background-color: #c0392b;
+    /* Darker shade on hover */
+}
+
+.branche-create-link {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #2ecc71;
+    /* Create link color */
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.branche-create-link:hover {
+    background-color: #27ae60;
+    /* Darker shade on hover */
+}
+
+/* Modal Styles */
+.branche-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+}
+
+.branche-modal-content {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.branche-modal-buttons {
+    margin-top: 20px;
+}
+
+.branche-confirm-btn,
+.branche-cancel-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.branche-confirm-btn {
+    background-color: #e74c3c;
+    /* Confirm button color */
+    color: white;
+}
+
+.branche-confirm-btn:hover {
+    background-color: #c0392b;
+    /* Darker shade on hover */
+}
+
+.branche-cancel-btn {
+    background-color: #95a5a6;
+    /* Cancel button color */
+    color: white;
+}
+
+.branche-cancel-btn:hover {
+    background-color: #7f8c8d;
+    /* Darker shade on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .o-branche-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .o-branche-image {
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .branche-details {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .o-branche-item {
+        padding: 10px;
+    }
+
+    .branche-create-link {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .branche-update-button,
+    .branche-delete-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .branche-confirm-btn,
+    .branche-cancel-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

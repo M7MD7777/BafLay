@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/parent_category_style/parent_category-details-style.css' %}">
+
+<div class="parent_category-details-container">
+    {% if parent_category.image %}
+    <img src="{{ parent_category.image.url }}" alt="{{ parent_category.name }}" class="parent_category-details-image">
+    {% else %}
+    <p>No Image Available</p>
+    {% endif %}
+    <h2 class="parent_category-details-title">{{ parent_category.name }}</h2>
+    <p class="parent_category-details-description">{{ parent_category.description }}</p>
+</div>
+
+{% endblock %}

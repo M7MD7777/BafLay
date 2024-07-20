@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/home-style.css' %}">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+<div class="container">
+    <h2 class="home-branche-list-title">Branches</h2>
+    <div class="home-branche-list">
+        {% for branche in branches %}
+        <div class="home-branche-item animate__animated animate__zoomIn">
+            <a href="{% url 'branche_categories' branche.id %}">
+                {% if branche.image %}
+                <img src="{{ branche.image.url }}" alt="{{ branche.name }} Image" class="home-branche-image">
+                {% else %}
+                <p>No Image Available</p>
+                {% endif %}
+            </a>
+            <div class="home-branche-details">
+                <p class="home-branche-name">{{ branche.name }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="home-no-branche">
+            <p>No branche available.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

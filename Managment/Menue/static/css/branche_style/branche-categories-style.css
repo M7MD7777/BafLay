@@ -1,0 +1,113 @@
+body {
+    background-color: #f4f4f4;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.site-content {
+    background-color: rgba(194, 195, 187, 0.945);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.branche-title {
+    text-align: center;
+    color: #333;
+    margin: 40px 0;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.parent_categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.parent_category-item {
+    background-color: #d8d8d8;
+    border-radius: 8px;
+    margin: 15px 0;
+    padding: 20px;
+    max-width: 350px;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: zoomIn 1s ease-in-out;
+}
+
+.parent_category-item:hover {
+    transform: scale(1.05);
+    /* Slightly increased scale for better effect */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    /* Enhanced hover shadow */
+}
+
+.parent_category-image {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.parent_category-name {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+.parent_category-description {
+    font-size: 1.2em;
+    color: #7f8c8d;
+    line-height: 1.6;
+}
+
+.no-categories {
+    text-align: center;
+    font-size: 1.2em;
+    color: #7f8c8d;
+    margin: 20px;
+    padding: 20px;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .parent_category-item {
+        margin: 10px auto;
+        /* Adjusted margin for better spacing */
+    }
+}
+
+@media (max-width: 480px) {
+    .parent_category-item {
+        width: 100%;
+        margin: 10px 0;
+        /* Adjusted margin */
+    }
+
+    .parent_category-name {
+        font-size: 1.2em;
+    }
+
+    .parent_category-description {
+        font-size: 1em;
+    }
+}

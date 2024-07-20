@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Branches{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/branche_style/branche-list-style.css' %}">
+
+
+<section class="o-branche-list-container">
+    <h2>Branch List</h2>
+    <ul class="o-branche-list">
+        {% for branche in branches %}
+        <li class="o-branche-item">
+            <a href="{% url 'branche_categories' branche.id %}">
+                {% if branche.image %}
+                <img src="{{ branche.image.url }}" alt="{{ branche.name }} Image" class="o-branche-image">
+                {% else %}
+                <p>No Image Available</p>
+                {% endif %}
+            </a>
+            <div class="branche-details">
+                <p><strong class="o-branche-detail-label">Name:</strong> {{ branche.name }}</p>
+                <p><strong class="o-branche-detail-label">Country:</strong> {{ branche.name }}</p>
+                <p><strong class="o-branche-detail-label">Address:</strong> {{ branche.name }}</p>
+
+            </div>
+            {% if user.is_authenticated %}
+            {% if request.user.profile.role == 'admin' %}
+            <div class="branche-actions">
+                <a href="{% url 'branche_update' branche.pk %}" class="branche-update-button">Update</a>
+                <form method="post" action="{% url 'branche_delete' branche.pk %}" class="branche-delete-form">
+                    {% csrf_token %}
+                    <button type="button" class="branche-delete-button">Delete</button>
+                </form>
+            </div>
+            {% endif %}
+            {% endif %}
+        </li>
+        {% empty %}
+        <p>No branches available.</p>
+        {% endfor %}
+    </ul>
+    {% if user.is_authenticated %}
+    {% if request.user.profile.role == 'admin' %}
+    <a href="{% url 'branche_create' %}" class="branche-create-link">Add Branch</a>
+    {% endif %}
+    {% endif %}
+    <div id="deleteModal" class="branche-modal">
+        <div class="branche-modal-content">
+            <p>Are you sure you want to delete this branch?</p>
+            <div class="branche-modal-buttons">
+                <button class="branche-confirm-btn" id="confirmDelete">Yes, Delete</button>
+                <button class="branche-cancel-btn" id="cancelDelete">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () =>
+        {
+            const deleteButtons = document.querySelectorAll('.branche-delete-button');
+            const deleteModal = document.getElementById('deleteModal');
+            const confirmDelete = document.getElementById('confirmDelete');
+            const cancelDelete = document.getElementById('cancelDelete');
+            let formToSubmit;
+
+            deleteButtons.forEach(button =>
+            {
+                button.addEventListener('click', (event) =>
+                {
+                    event.preventDefault();
+                    formToSubmit = event.target.closest('form');
+                    deleteModal.style.display = 'flex';
+                });
+            });
+
+            confirmDelete.addEventListener('click', () =>
+            {
+                formToSubmit.submit();
+            });
+
+            cancelDelete.addEventListener('click', () =>
+            {
+                deleteModal.style.display = 'none';
+            });
+        });
+    </script>
+</section>
+{% endblock %}

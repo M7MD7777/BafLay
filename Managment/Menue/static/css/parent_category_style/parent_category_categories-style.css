@@ -1,0 +1,121 @@
+body {
+    background-color: #f4f4f4;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.site-content {
+    background-color: rgba(194, 195, 187, 0.945);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.parent-category-title {
+    text-align: center;
+    color: #333;
+    margin: 40px 0;
+    font-size: 2em;
+}
+
+.category-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.category-item {
+    background-color: #d8d8d8;
+    border-radius: 8px;
+    border: 0px solid #ffffff;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: zoomIn 1s ease-in-out;
+    margin: 5 auto;
+}
+
+
+
+.category-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.category-item img {
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    /* Maintains aspect ratio while limiting height */
+    object-fit: cover;
+    /* Ensures image covers the area */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.category-name {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+.category-description {
+    font-size: 1.2em;
+    color: #7f8c8d;
+    line-height: 1.6;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .category-item {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .parent-category-title {
+        font-size: 1.5em;
+    }
+
+    .category-name {
+        font-size: 1.2em;
+    }
+
+    .category-description {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-item {
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .parent-category-title {
+        font-size: 1.7em;
+    }
+
+    .category-name {
+        font-size: 1em;
+    }
+
+    .category-description {
+        font-size: 0.9em;
+    }
+}

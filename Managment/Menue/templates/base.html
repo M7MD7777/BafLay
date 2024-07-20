@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Baflay{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base-style.css' %}">
+</head>
+
+<body class="base-body">
+
+    <header class="site-header">
+        <div class="full-header">
+            <div class="header-content">
+                <div class="logo-and-title">
+                    <a href="/"> <img src="{% static '..\media/BafLay_Logo.png' %}" alt="BafLay_Logo"
+                            class="site-logo"></a>
+                    <h1 class="site-title">Welcome to Baflay Burger</h1>
+                </div>
+                <nav class="site-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                        {% if request.user.profile.role == 'admin' %}
+                        <li class="nav-item"><a href="{% url 'dashboard' %}" class="nav-link">Dashboard</a></li>
+                        {% endif %}
+
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="site-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2024 Baflay. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/category_style/category-details-style.css' %}">
+
+<div class="category-details-container">
+    {% if category.image %}
+    <img src="{{ category.image.url }}" alt="{{ category.name }}" class="category-details-image">
+    {% else %}
+    <p>No Image Available</p>
+    {% endif %}
+    <h2 class="category-details-title">{{ category.name }}</h2>
+    <p class="category-details-description">{{ category.description }}</p>
+</div>
+
+{% endblock %}
